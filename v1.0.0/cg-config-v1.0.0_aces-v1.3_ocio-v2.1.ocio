@@ -434,6 +434,30 @@ colorspaces:
     categories: [file-io]
     allocation: uniform
 
+  - !<ColorSpace>
+    name: Output - ACES 1.0 - SDR Video (Rec.1886 Rec.709)
+    family: Output
+    description: ACES 1.0 SDR-video for Rec.709 HD video with Rec.1886 gamma (2.4)
+    isdata: false
+    categories: [ file-io ]
+    encoding: sdr-video
+    from_reference: !<GroupTransform>
+      children:
+        - !<DisplayViewTransform> {src: ACES2065-1, display: "Rec.1886 Rec.709 - Display", view: "ACES 1.0 - SDR Video"}
+        - !<RangeTransform> {min_in_value: 0., min_out_value: 0., max_in_value: 1., max_out_value: 1.}
+
+  - !<ColorSpace>
+    name: Output - ACES 1.0 - SDR Video (sRGB)
+    family: Output
+    description: ACES 1.0 SDR-video for sRGB monitor (piecewise EOTF)
+    isdata: false
+    categories: [ file-io ]
+    encoding: sdr-video
+    from_reference: !<GroupTransform>
+      children:
+        - !<DisplayViewTransform> {src: ACES2065-1, display: "sRGB - Display", view: "ACES 1.0 - SDR Video"}
+        - !<RangeTransform> {min_in_value: 0., min_out_value: 0., max_in_value: 1., max_out_value: 1.}	
+
 named_transforms:
   - !<NamedTransform>
     name: Rec.1886 - Curve
