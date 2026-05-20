@@ -350,6 +350,19 @@ display_colorspaces:
     from_display_reference: !<BuiltinTransform> {style: DISPLAY - CIE-XYZ-D65_to_ST2084-P3-D65}
 
 colorspaces:
+
+  - !<ColorSpace>
+    name: Output - ACES 2.0 - SDR 100 nits (Rec.709) (sRGB - Display)
+    family: Output
+    description: ACES 2.0 SDR-video for sRGB monitor (piecewise EOTF)
+    isdata: false
+    categories: [ file-io ]
+    encoding: sdr-video
+    from_reference: !<GroupTransform>
+      children:
+        - !<DisplayViewTransform> {src: ACES2065-1, display: "sRGB - Display", view: "ACES 2.0 - SDR 100 nits (Rec.709)"}
+        - !<RangeTransform> {min_in_value: 0., min_out_value: 0., max_in_value: 1., max_out_value: 1.}	
+
   - !<ColorSpace>
     name: ACES2065-1
     aliases: [aces2065_1, aces, ACES - ACES2065-1, lin_ap0, lin_ap0_scene]
